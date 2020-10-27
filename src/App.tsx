@@ -1,10 +1,19 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
+import { useSettingsButton, Box } from '@airtable/blocks/ui';
+import { Settings, Calculator } from './components';
 
 const App: FC = () => {
+  const [showSettings, setShowSettings] = useState(true);
+
+  useSettingsButton(() => {
+    setShowSettings(!showSettings);
+  });
+
   return (
-    <div>
-      <div>hello world!</div>
-    </div>
+    <Box display={'flex'}>
+      <Calculator />
+      {showSettings ? <Settings /> : null}
+    </Box>
   );
 };
 
